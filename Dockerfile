@@ -55,6 +55,7 @@ COPY start_lamp.sh /usr/sbin/
 
 RUN a2enmod rewrite
 RUN chmod +x /usr/sbin/start_lamp.sh
+RUN chown -R www-data:www-data /var/www/html
 
 VOLUME /var/www/html
 VOLUME /var/log/httpd
