@@ -41,7 +41,7 @@ RUN apt-get install -y \
 	php-xsl \
 	php-zip
 
-RUN apt-get install apache2 libapache2-mod-php7.0 -y
+RUN apt-get install apache2 libapache2-mod-php -y
 
 
 ENV LOG_STDOUT **Boolean**
@@ -52,11 +52,11 @@ ENV DATE_TIMEZONE UTC
 ENV TERM dumb
 
 
-COPY start_lamp.sh /usr/sbin/
+COPY start_lamp.sh /
 
 
 RUN a2enmod rewrite
-RUN chmod +x /usr/sbin/start_lamp.sh
+RUN chmod 777 /start_lamp.sh
 RUN chown -R www-data:www-data /var/www/html
 
 VOLUME /var/www/html
@@ -66,4 +66,4 @@ VOLUME /etc/apache2
 
 EXPOSE 80
 
-CMD ["/usr/sbin/start_lamp.sh"]
+CMD ["/start_lamp.sh"]
